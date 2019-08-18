@@ -14,7 +14,8 @@
 	],
 	"require": {
 		"php": ">=7.3",
-		"guzzlehttp/guzzle": "~6.0"
+		"guzzlehttp/guzzle": "~6.0",
+		"xpaw/steamid": "^1.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "^8"
@@ -28,5 +29,11 @@
 		"psr-4": {
 			"Limelight\\API\\Tests\\": "tests/"
 		}
-	}
+	},
+	"repositories": [
+		{
+			"type": "git",
+			"url": "https://github.com/kanalumaddela/SteamID.php.git"
+		}
+	]
 }

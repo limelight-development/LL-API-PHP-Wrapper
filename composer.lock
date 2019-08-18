@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0b757932fe6087e13d6632c9eb314e24",
+    "content-hash": "1bd5a1377e5736fdde356d254fed6894",
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -282,6 +282,40 @@
             ],
             "description": "A polyfill for getallheaders.",
             "time": "2019-03-08T08:55:37+00:00"
+        },
+        {
+            "name": "xpaw/steamid",
+            "version": "1.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kanalumaddela/SteamID.php.git",
+                "reference": "2a7cea536dffb0326a95d9c94febe2b3f9897e59"
+            },
+            "require": {
+                "ext-gmp": "*",
+                "php": ">=5.4"
+            },
+            "require-dev": {
+                "codeclimate/php-test-reporter": "dev-master",
+                "phpunit/phpunit": "4.7.x-dev"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "SteamID.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Pavel Djundik",
+                    "email": "steamid.php@xpaw.me"
+                }
+            ],
+            "description": "SteamID conversion library",
+            "time": "2015-10-20T09:48:55+00:00"
         }
     ],
     "packages-dev": [
