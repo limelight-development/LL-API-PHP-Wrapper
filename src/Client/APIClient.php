@@ -38,6 +38,7 @@ class APIClient {
 
 		$opts["guzzle"] = $guzzle;
 		$this->client = new Client($guzzle);
+		$this->options = $opts;
 	}
 
 	public function __call($name, $arguments){
