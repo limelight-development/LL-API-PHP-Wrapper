@@ -8,7 +8,7 @@ class Player extends APIClient implements ModelInterface {
 	/** Internal 64 bit representation of the player's steamID.
 	 * @var string
 	 */
-	private $steamid = "0";
+	private $steamid;
 
 	/** Player's last known steam name.
 	 * @var string
