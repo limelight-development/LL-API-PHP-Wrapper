@@ -6,7 +6,7 @@ use GuzzleHttp\Client;
 use BadFunctionCallException;
 
 class APIClient {
-	public static $BASE_URL = "https://api.limelightgaming.net/v2/";
+	public static $BASE_URL = "https://api.limelightgaming.net/dev/";
 	private $client;
 	private $options = [];
 
