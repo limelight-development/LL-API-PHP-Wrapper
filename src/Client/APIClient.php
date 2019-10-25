@@ -4,6 +4,7 @@ namespace Limelight\API\Client;
 
 use GuzzleHttp\Client;
 use BadFunctionCallException;
+use Limelight\API\Models\Clan;
 
 class APIClient {
 	public static $BASE_URL = "https://api.limelightgaming.net/dev/";
@@ -41,11 +42,46 @@ class APIClient {
 		$this->options = $opts;
 	}
 
-	public function __call($name, $arguments){
-		if (method_exists($this->client, $name)){
-			return $this->client->{$name}(...$arguments);
+	public function get(...$args){
+		$rtn = $this->client->get(...$args);
+		$code = $rtn->getStatusCode();
+		if ($code < 200 || $code >= 300){
+			return false;
+		} else {
+			$obj = json_decode($rtn->getBody()->getContents());
+			if ($obj->status !== 'success'){
+				return false;
+			} else {
+				return $obj;
+			}
+		}
+	}
+
+	public function Clans($withMembers = false, $withRanks = false){
+		$with = array_keys(array_filter(['members' => $withMembers, 'ranks' => $withRanks]));
+		if (empty($with)){
+			$url = 'clans';
+		} else {
+			$url = 'clans?with=' . join(',', $with);
 		}
 
-		throw new BadFunctionCallException("Attempted to __call() invalid function.");
+		$rtn = $this->get($url);
+		if (!$rtn){return [];}
+
+		return array_map(Clan::class . '::fromObject', $rtn->data, array_fill(0, count($rtn->data), $this));
+	}
+
+	public function Clan($id, $withMembers = false, $withRanks = false){
+		$with = array_keys(array_filter(['members' => $withMembers, 'ranks' => $withRanks]));
+		if (empty($with)){
+			$url = "clans/{$id}";
+		} else {
+			$url = "clans/{$id}?with=" . join(',', $with);
+		}
+
+		$rtn = $this->get($url);
+		if (!$rtn){return [];}
+
+		return Clan::fromObject($rtn->data, $this);
 	}
 }
