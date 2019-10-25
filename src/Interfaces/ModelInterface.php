@@ -3,5 +3,5 @@
 namespace Limelight\API\Interfaces;
 
 interface ModelInterface {
-	public static function fromResponse(string $json);
+	public static function fromObject(object $obj);
 }
