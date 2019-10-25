@@ -33,12 +33,6 @@ class Player extends Model implements ModelInterface {
 		return $this->steamid->RenderSteam2();
 	}
 
-	public static function fromResponse(string $json){
-		$obj = json_decode($json);
-		$ply = new static($obj->steamid, $obj->name);
-		return $ply;
-	}
-
 	public static function fromObject(object $obj, APIClient $api = null){
 		if (isset($obj->name)){
 			$name = $obj->name;
