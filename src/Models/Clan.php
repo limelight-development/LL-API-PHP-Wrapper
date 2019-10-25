@@ -45,7 +45,7 @@ class Clan extends Model implements ModelInterface {
 		}
 
 		if (isset($obj->members)){
-			$clan->setMembers(array_map(ClanMember::class . '::fromObject', $obj->members, array_fill(0, count($obj->members), $api)));
+			$clan->setMembers(Model::substantiate(ClanMember::class, $obj->members, $api));
 		}
 
 		if (isset($obj->ranks)){
