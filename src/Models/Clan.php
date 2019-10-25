@@ -39,11 +39,6 @@ class Clan extends Model implements ModelInterface {
 		return $this->members;
 	}
 
-	public static function fromResponse(string $json): self {
-		$obj = parent::fromResponse($json);
-		return new static($obj->id, $obj->name);
-	}
-
 	public static function fromObject(object $obj, APIClient $api = null): self {
 		$clan = new static($obj->id, $obj->name);
 
