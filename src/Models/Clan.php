@@ -26,6 +26,13 @@ class Clan extends Model implements ModelInterface {
 	}
 
 	/**
+	 * @param mixed $ranks
+	 */
+	public function setRanks($ranks): void{
+		$this->ranks = $ranks;
+	}
+
+	/**
 	 * @return mixed
 	 */
 	public function getMembers(){
@@ -49,7 +56,7 @@ class Clan extends Model implements ModelInterface {
 		}
 
 		if (isset($obj->ranks)){
-			// TODO: Add ranks.
+			$clan->setRanks(Model::substantiate(ClanRank::class, $obj->ranks, $api));
 		}
 
 		return $clan;
