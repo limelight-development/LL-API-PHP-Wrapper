@@ -3,8 +3,9 @@
 namespace Limelight\API\Client;
 
 use GuzzleHttp\Client;
-use BadFunctionCallException;
 use Limelight\API\Models\Clan;
+use Limelight\API\Models\Model;
+use Limelight\API\Models\ClanMember;
 
 class APIClient {
 	public static $BASE_URL = "https://api.limelightgaming.net/dev/";
@@ -83,5 +84,12 @@ class APIClient {
 		if (!$rtn){return [];}
 
 		return Clan::fromObject($rtn->data, $this);
+	}
+
+	public function ClanMembers($id){
+		$rtn = $this->get("clans/{$id}/members");
+		if (!$rtn){return [];}
+
+		return Model::substantiate(ClanMember::class, $rtn->data, $this);
 	}
 }
