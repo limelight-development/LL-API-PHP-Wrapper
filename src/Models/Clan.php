@@ -43,6 +43,17 @@ class Clan extends Model implements ModelInterface {
 		return $this->members;
 	}
 
+	/**
+	 * @return mixed
+	 */
+	public function getRanks(){
+		if (!isset($this->ranks)){
+			$this->ranks = $this->getClient()->ClanRanks($this->id);
+		}
+
+		return $this->ranks;
+	}
+
 	public static function fromObject(object $obj, APIClient $api = null): self {
 		$clan = new static($obj->id, $obj->name);
 

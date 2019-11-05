@@ -5,6 +5,7 @@ namespace Limelight\API\Client;
 use GuzzleHttp\Client;
 use Limelight\API\Models\Clan;
 use Limelight\API\Models\Model;
+use Limelight\API\Models\ClanRank;
 use Limelight\API\Models\ClanMember;
 
 class APIClient {
@@ -91,5 +92,12 @@ class APIClient {
 		if (!$rtn){return [];}
 
 		return Model::substantiate(ClanMember::class, $rtn->data, $this);
+	}
+
+	public function ClanRanks($id){
+		$rtn = $this->get("clans/{$id}/ranks");
+		if (!$rtn){return [];}
+
+		return Model::substantiate(ClanRank::class, $rtn->data, $this);
 	}
 }
