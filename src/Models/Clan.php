@@ -36,6 +36,10 @@ class Clan extends Model implements ModelInterface {
 	 * @return mixed
 	 */
 	public function getMembers(){
+		if (!isset($this->members)){
+			$this->members = $this->getClient()->ClanMembers($this->id);
+		}
+
 		return $this->members;
 	}
 
